@@ -19,6 +19,9 @@ locals {
   base_name = "${var.prefix}web"
   change = "trigger-4"
 }
+locals {
+  change = "trigger a change"
+}
 
 resource "azurerm_resource_group" "web" {
   name     = local.base_name
