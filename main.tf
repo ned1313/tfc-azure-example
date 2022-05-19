@@ -17,11 +17,16 @@ variable "location" {
 
 locals {
   base_name = "${var.prefix}web"
+  change = "trigger-3"
 }
 
 resource "azurerm_resource_group" "web" {
   name     = local.base_name
   location = var.location
+  
+  tags = {
+    "environment" = var.prefix
+  }
 }
 
 resource "azurerm_virtual_network" "web" {
@@ -30,4 +35,8 @@ resource "azurerm_virtual_network" "web" {
   location            = azurerm_resource_group.web.location
 
   address_space = [var.address_space]
+  
+  tags = {
+    "environment" = var.prefix
+  }
 }
