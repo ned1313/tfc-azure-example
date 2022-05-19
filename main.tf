@@ -17,6 +17,7 @@ variable "location" {
 
 locals {
   base_name = "${var.prefix}web"
+  change = "trigger"
 }
 
 resource "azurerm_resource_group" "web" {
