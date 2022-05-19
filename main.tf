@@ -40,3 +40,7 @@ resource "azurerm_virtual_network" "web" {
     "environment" = var.prefix
   }
 }
+
+locals {
+  change = "trigger a change"
+}
