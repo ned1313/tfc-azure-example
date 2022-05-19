@@ -20,6 +20,10 @@ locals {
   change = "trigger-4"
 }
 
+locals {
+  change = "trigger a change"
+}
+
 resource "azurerm_resource_group" "web" {
   name     = local.base_name
   location = var.location
