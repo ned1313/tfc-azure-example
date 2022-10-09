@@ -18,6 +18,8 @@ terraform {
 
 provider "azurerm" {
   features {}
+
+  use_oidc = true
   oidc_token = data.environment_variables.all.items["TFC_WORKLOAD_IDENTITY_TOKEN"]
 }
 
