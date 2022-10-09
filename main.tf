@@ -19,7 +19,7 @@ locals {
   base_name = "${var.prefix}web"
   change = "trigger-3"
 }
-
+/*
 resource "azurerm_resource_group" "web" {
   name     = local.base_name
   location = var.location
@@ -40,3 +40,4 @@ resource "azurerm_virtual_network" "web" {
     "environment" = var.prefix
   }
 }
+*/
