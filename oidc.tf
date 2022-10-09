@@ -9,6 +9,6 @@ resource "null_resource" "environment_variables" {
 }
 
 resource "local_file" "workspace_token" {
-  content = environment_variables.all.items["TFC_WORKLOAD_IDENTITY_TOKEN"]
+  content = data.environment_variables.all.items["TFC_WORKLOAD_IDENTITY_TOKEN"]
   filename = "~/.azure/token"
 }
