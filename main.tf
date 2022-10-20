@@ -42,8 +42,5 @@ resource "azurerm_virtual_network" "web" {
   }
 }
 
-locals {
-  change = "trigger a change"
-}
 
 /// This is a pain in the ass
