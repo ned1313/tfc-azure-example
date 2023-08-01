@@ -6,7 +6,7 @@ variable "prefix" {
 variable "address_space" {
   type        = string
   description = "(Optional) Address space for virtual network, defaults to 10.0.0.0/16."
-  default     = "10.0.0.0/16"
+  default     = "10.42.0.0/16"
 }
 
 variable "location" {
