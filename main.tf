@@ -6,7 +6,7 @@ variable "prefix" {
 variable "address_space" {
   type        = string
   description = "(Optional) Address space for virtual network, defaults to 10.0.0.0/16."
-  default     = "10.96.0.0/16"
+  default     = "10.42.0.0/16"
 }
 
 variable "location" {
@@ -25,7 +25,7 @@ resource "azurerm_resource_group" "web" {
   location = var.location
   
   tags = {
-    "environment" = var.prefix
+    #"environment" = var.prefix
     "owner" = "clippy"
   }
 }
@@ -38,6 +38,6 @@ resource "azurerm_virtual_network" "web" {
   address_space = [var.address_space]
   
   tags = {
-    "environment" = var.prefix
+    #"environment" = var.prefix
   }
 }
