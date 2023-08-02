@@ -25,7 +25,7 @@ resource "azurerm_resource_group" "web" {
   location = var.location
   
   tags = {
-    #"environment" = var.prefix
+    "environment" = var.prefix
     "owner" = "clippy"
   }
 }
@@ -38,6 +38,6 @@ resource "azurerm_virtual_network" "web" {
   address_space = [var.address_space]
   
   tags = {
-    #"environment" = var.prefix
+    "environment" = var.prefix
   }
 }
