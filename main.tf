@@ -1,18 +1,18 @@
-variable "prefix" {
-  type        = string
-  description = "(Required) Naming prefix for resources."
+provider "azurerm" {
+  features {}
+  use_oidc             = true
+  client_id_file_path  = var.tfc_azure_dynamic_credentials.default.client_id_file_path
+  oidc_token_file_path = var.tfc_azure_dynamic_credentials.default.oidc_token_file_path
 }
 
-variable "address_space" {
-  type        = string
-  description = "(Optional) Address space for virtual network, defaults to 10.0.0.0/16."
-  default     = "10.42.0.0/16"
-}
-
-variable "location" {
-  type        = string
-  description = "(Optional) Region for Azure resources, defaults to East US."
-  default     = "eastus"
+provider "azurerm" {
+  features {}
+  subscription_id      = var.security_subscription_id
+  tenant_id            = var.security_tenant_id
+  alias                = "security"
+  use_oidc             = true
+  client_id_file_path  = var.tfc_azure_dynamic_credentials.aliases["security"].client_id_file_path
+  oidc_token_file_path = var.tfc_azure_dynamic_credentials.aliases["security"].oidc_token_file_path
 }
 
 locals {
@@ -22,9 +22,20 @@ locals {
 resource "azurerm_resource_group" "web" {
   name     = local.base_name
   location = var.location
-  
+
   tags = {
-    "environment" = var.prefix
+    environment = var.prefix
+  }
+}
+
+resource "azurerm_resource_group" "security" {
+  provider = azurerm.security
+  name     = "${local.base_name}-security"
+  location = var.location
+
+  tags = {
+    environment = var.prefix
+    security    = "true"
   }
 }
 
@@ -34,7 +45,7 @@ resource "azurerm_virtual_network" "web" {
   location            = azurerm_resource_group.web.location
 
   address_space = [var.address_space]
-  
+
   tags = {
     "environment" = var.prefix
   }
